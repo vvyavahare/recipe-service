@@ -35,11 +35,11 @@ public class RecipeController {
 
     @GetMapping
     public List<Recipe> search(
-            @RequestParam(required = false) Boolean vegetarian,
-            @RequestParam(required = false) Integer servings,
-            @RequestParam(required = false) Set<String> includeIngredients,
-            @RequestParam(required = false) Set<String> excludeIngredients,
-            @RequestParam(required = false) String instructionText
+            @RequestParam(name = "vegetarian",required = false) Boolean vegetarian,
+            @RequestParam(name = "servings",required = false) Integer servings,
+            @RequestParam(name = "includeIngredients",required = false) Set<String> includeIngredients,
+            @RequestParam(name = "excludeIngredients",required = false) Set<String> excludeIngredients,
+            @RequestParam(name = "instructionText",required = false) String instructionText
     ) {
         return service.search(
                 vegetarian,

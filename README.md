@@ -9,3 +9,15 @@ More Examples:
     GET /api/recipes?servings=4&includeIngredients=potatoes,onion
     GET /api/recipes?servings=4&includeIngredients=potatoes,onion
 
+
+H2-Console:
+http://localhost:8080/h2-console
+
+
+![img.png](img.png)
+
+
+![img_1.png](img_1.png)
+
+
+![img_2.png](img_2.png)

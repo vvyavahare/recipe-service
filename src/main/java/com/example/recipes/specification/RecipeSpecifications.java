@@ -28,15 +28,20 @@ public class RecipeSpecifications {
 
     public static Specification<Recipe> excludesIngredients(Set<String> ingredients) {
         return (root, query, cb) -> {
-            if (ingredients == null || ingredients.isEmpty()) return null;
-            var subquery = query.subquery(String.class);
-            var subRoot = subquery.from(Recipe.class);
-            var join = subRoot.join("ingredients");
-            subquery.select(subRoot.get("id"))
-                    .where(join.in(ingredients));
-            return cb.not(root.get("id").in(subquery));
+            if (ingredients == null || ingredients.isEmpty()) {
+                return null;
+            }
+
+            query.distinct(true);
+
+            var join = root.join("ingredients", JoinType.LEFT);
+            return cb.or(
+                    cb.isNull(join),
+                    cb.not(join.in(ingredients))
+            );
         };
     }
+
 
     public static Specification<Recipe> instructionContains(String text) {
         return (root, query, cb) ->
